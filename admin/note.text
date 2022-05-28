@@ -1,0 +1,9 @@
+thêm popup cho remove and update danh mục sản phẩm:
+[
+    bạn có muốn xoá không,
+    cập nhập thành công hoặc thật bại
+]
+
+- install laravel global: composer global require laravel/installer
+- check: laravel
+- new folder: laravel new myfolder
