@@ -16,6 +16,11 @@
 </head>
 
 <body>
+    <?php
+    include '../connect.php';
+    $sql = "select * from danh_muc_san_phams";
+    $ket_qua = mysqli_query($ket_noi, $sql);
+    ?>
     <div class="container">
 
         <!-- navigation left -->
@@ -115,18 +120,18 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Thêm mới sản phẩm</h5>
-                        <form class="" id="formCreate">
+                        <form class="" id="formCreate" method="post" action="process_insert.php">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <label>Tên Sản Phẩm</label>
-                                        <input id="ten_san_pham" placeholder="Nhập vào tên sản phẩm" type="text" class="form-control">
+                                        <input id="ten_san_pham" name="ten_san_pham" placeholder="Nhập vào tên sản phẩm" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <label>Slug Sản Phẩm</label>
-                                        <input id="slug_san_pham" placeholder="Nhập vào slug sản phẩm" type="text" class="form-control">
+                                        <input id="slug_san_pham" name="slug_san_pham" placeholder="Nhập vào slug sản phẩm" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -135,13 +140,13 @@
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <label>Giá Bán</label>
-                                        <input id="gia_ban" placeholder="Nhập vào giá bán" type="number" class="form-control">
+                                        <input id="gia_ban" name="gia_ban" placeholder="Nhập vào giá bán" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <label>Giá Khuyến Mãi</label>
-                                        <input id="gia_khuyen_mai" placeholder="Nhập vào giá khuyến mãi" type="number" class="form-control">
+                                        <input id="gia_khuyen_mai" name="gia_khuyen_mai" placeholder="Nhập vào giá khuyến mãi" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -158,28 +163,30 @@
 
                             <div class="position-relative form-group">
                                 <label>Mô Tả Ngắn</label>
-                                <textarea class="form-control" id="mo_ta_ngan" cols="30" rows="5" placeholder="Nhập vào mô tả ngắn"></textarea>
+                                <textarea class="form-control" id="mo_ta_ngan" name="mo_ta_ngan" cols="30" rows="5" placeholder="Nhập vào mô tả ngắn"></textarea>
                             </div>
                             <div class="position-relative form-group">
                                 <label>Mô Tả Chi Tiết</label>
-                                <input name="mo_ta_chi_tiet" id="mo_ta_chi_tiet" placeholder="Nhập vào mô tả chi tiết" type="text" class="form-control">
+                                <input id="mo_ta_chi_tiet" name="mo_ta_chi_tiet" placeholder="Nhập vào mô tả chi tiết" type="text" class="form-control">
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <label>Danh Mục</label>
-                                        <select id="id_danh_muc" class="form-control">
-                                            @foreach ($list_danh_muc as $value)
-                                            <option value={{$value->id}}> {{ $value->ten_danh_muc }} </option>
-                                            @endforeach
+                                        <select id="id_danh_muc" name="id_danh_muc" class="form-control">
+                                            <?php foreach ($ket_qua as $danh_muc) {
+                                                if ($danh_muc['is_open'] == 1) {
+                                                    echo '<option value=' . $danh_muc['id'] . '>' . $danh_muc['ten_danh_muc'] . '</option>';
+                                                }
+                                            } ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <label>Tình Trạng</label>
-                                        <select id="is_open" class="form-control">
+                                        <select id="is_open" name="is_open" class="form-control">
                                             <option value=1>Hiển Thị</option>
                                             <option value=0>Tạm tắt</option>
                                         </select>
@@ -202,7 +209,7 @@
                                     <tr>
                                         <th class="text-nowrap text-center">#</th>
                                         <th class="text-nowrap text-center">Tên Sản Phẩm</th>
-                                        <th class="text-nowrap text-center">Slug Sản Phẩm</th>
+                                        <!-- <th class="text-nowrap text-center">Slug Sản Phẩm</th> -->
                                         <th class="text-nowrap text-center">Giá Bán</th>
                                         <th class="text-nowrap text-center">Giá Khuyến Mãi</th>
                                         <th class="text-nowrap text-center">Tình Trạng</th>
@@ -211,6 +218,47 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                    $sql = "select * from san_phams";
+                                    $ket_qua = mysqli_query($ket_noi, $sql);
+                                    foreach ($ket_qua as $tung_san_pham) { ?>
+                                        <tr>
+                                            <td><?php echo $tung_san_pham['id'] ?></td>
+                                            <td>
+                                                <?php echo $tung_san_pham['ten_san_pham']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $tung_san_pham['gia_ban']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $tung_san_pham['gia_khuyen_mai']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $tung_san_pham['anh_dai_dien']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $tung_san_pham['mo_ta_ngan']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $tung_san_pham['mo_ta_chi_tiet']; ?>
+                                            </td>
+                                            <td class="test">
+                                                <?php
+                                                echo "<button ";
+                                                if ($tung_san_pham['is_open'] == 1) {
+                                                    echo 'class="doiTrangThai btn btn-primary">Hiển thị';
+                                                } else {
+                                                    echo 'class="doiTrangThai btn btn-danger">Tạm tắt';
+                                                }
+                                                echo " </button>";
+                                                ?>
+                                            </td>
+                                            <td class="test">
+                                                <a href="delete.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
+                                                <a href="./update_DMSP.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-primary edit mr-1 edit_DM">Edit</button></a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

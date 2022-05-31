@@ -121,7 +121,7 @@
                                 <div class="position-relative form-group">
                                     <label>Danh Mục Cha</label>
                                     <select id="id_danh_muc_cha" name="id_danh_muc_cha" class="form-control">
-                                        <option value="">Danh Mục Root</option>
+                                        <option value="1">Danh Mục Root</option>
                                     </select>
                                 </div>
                                 <div class="position-relative form-group">
@@ -166,7 +166,7 @@
                                                 if ($tung_san_pham['is_open'] == 1) {
                                                     echo 'class="doiTrangThai btn btn-primary">Hiển thị';
                                                 } else {
-                                                    echo 'class="doiTrangThai btn btn-danger">tam tat';
+                                                    echo 'class="doiTrangThai btn btn-danger">Tạm tắt';
                                                 }
                                                 echo " </button>";
                                                 ?>

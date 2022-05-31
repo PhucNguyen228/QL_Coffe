@@ -7,3 +7,6 @@ thêm popup cho remove and update danh mục sản phẩm:
 - install laravel global: composer global require laravel/installer
 - check: laravel
 - new folder: laravel new myfolder
+
+hàm này để kiểm tra lỗi sai khi lỗi thì không xoá hết thông tin
+dùng hàm: echo "script" location:window.history.back('về lại file.php đăng ký')</script>;
