@@ -18,8 +18,10 @@
 <body>
     <?php
     include '../connect.php';
-    $sql = "select * from danh_muc_san_phams";
+    $id = $_GET['id'];
+    $sql = "select * from san_phams where id = '$id'";
     $ket_qua = mysqli_query($ket_noi, $sql);
+    $SanPhams = mysqli_fetch_array($ket_qua);
     ?>
     <div class="container">
 
@@ -119,19 +121,20 @@
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">Thêm mới sản phẩm</h5>
-                        <form class="" id="formCreate" method="post" action="process_insert.php">
+                        <h5 class="card-title">Chỉnh sửa thông tin sản phẩm</h5>
+                        <form class="" id="formCreate" method="post" action="process_update.php">
+                            <input type="hidden" name="id" value="<?php echo $id ?>">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <label>Tên Sản Phẩm</label>
-                                        <input id="ten_san_pham" name="ten_san_pham" placeholder="Nhập vào tên sản phẩm" type="text" class="form-control">
+                                        <input id="ten_san_pham" name="ten_san_pham" value="<?php echo $SanPhams['ten_san_pham'] ?>" placeholder="Nhập vào tên sản phẩm" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <label>Slug Sản Phẩm</label>
-                                        <input id="slug_san_pham" name="slug_san_pham" placeholder="Nhập vào slug sản phẩm" type="text" class="form-control">
+                                        <input id="slug_san_pham" name="slug_san_pham" value="<?php echo $SanPhams['slug_san_pham'] ?>" placeholder="Nhập vào slug sản phẩm" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -140,20 +143,20 @@
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <label>Giá Bán</label>
-                                        <input id="gia_ban" name="gia_ban" placeholder="Nhập vào giá bán" type="number" class="form-control">
+                                        <input id="gia_ban" name="gia_ban" value="<?php echo $SanPhams['gia_ban'] ?>" placeholder="Nhập vào giá bán" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <label>Giá Khuyến Mãi</label>
-                                        <input id="gia_khuyen_mai" name="gia_khuyen_mai" placeholder="Nhập vào giá khuyến mãi" type="number" class="form-control">
+                                        <input id="gia_khuyen_mai" name="gia_khuyen_mai" value="<?php echo $SanPhams['gia_khuyen_mai'] ?>" placeholder="Nhập vào giá khuyến mãi" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <label>Ảnh Đại Diện</label>
                                         <div class="input-group">
-                                            <input id="anh_dai_dien" name="anh_dai_dien" class="form-control" type="text">
+                                            <input id="anh_dai_dien" name="anh_dai_dien" value="<?php echo $SanPhams['anh_dai_dien'] ?>" class="form-control" type="text">
                                             <input type="button" class="btn-info lfm" data-input="anh_dai_dien" data-preview="holder" value="Upload">
                                         </div>
                                         <img id="holder" style="margin-top:15px;max-height:100px;">
@@ -163,19 +166,38 @@
 
                             <div class="position-relative form-group">
                                 <label>Mô Tả Ngắn</label>
-                                <textarea class="form-control" id="mo_ta_ngan" name="mo_ta_ngan" cols="30" rows="5" placeholder="Nhập vào mô tả ngắn"></textarea>
+                                <textarea class="form-control" id="mo_ta_ngan" name="mo_ta_ngan" cols="30" rows="5" placeholder="Nhập vào mô tả ngắn"><?php echo $SanPhams['mo_ta_ngan'] ?></textarea>
                             </div>
                             <div class="position-relative form-group">
                                 <label>Mô Tả Chi Tiết</label>
-                                <input id="mo_ta_chi_tiet" name="mo_ta_chi_tiet" placeholder="Nhập vào mô tả chi tiết" type="text" class="form-control">
+                                <input id="mo_ta_chi_tiet" name="mo_ta_chi_tiet" value="<?php echo $SanPhams['mo_ta_chi_tiet'] ?>" placeholder="Nhập vào mô tả chi tiết" type="text" class="form-control">
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
+                                        <label>Tình Trạng</label>
+                                        <select id="is_open" name="is_open" value="<?php echo $SanPhams['is_open'] ?>" class="form-control">
+                                            <?php if($SanPhams['is_open'] == 1) {
+                                                echo '<option value=1>Hiển Thị</option>';
+                                                echo '<option value=0>Tạm tắt</option>';
+                                            }
+                                            else {
+                                                echo '<option value=0>Tạm tắt</option>';
+                                                echo '<option value=1>Hiển Thị</option>';
+                                            }
+                                            ?> 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
                                         <label>Danh Mục</label>
-                                        <select id="id_danh_muc" name="id_danh_muc" class="form-control">
-                                            <?php foreach ($ket_qua as $danh_muc) {
+                                        <select id="id_danh_muc" name="id_danh_muc" value="<?php echo $SanPhams['ten_danh_muc'] ?>" class="form-control">
+                                            <?php
+                                            $sqlDM = "select * from danh_muc_san_phams";
+                                            $ket_qua_DM = mysqli_query($ket_noi, $sqlDM);
+                                            foreach ($ket_qua_DM as $danh_muc) {
                                                 if ($danh_muc['is_open'] == 1) {
                                                     echo '<option value=' . $danh_muc['id'] . '>' . $danh_muc['ten_danh_muc'] . '</option>';
                                                 }
@@ -183,18 +205,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <label>Tình Trạng</label>
-                                        <select id="is_open" name="is_open" class="form-control">
-                                            <option value=1>Hiển Thị</option>
-                                            <option value=0>Tạm tắt</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
 
-                            <button class="mt-1 btn btn-primary" id="createSanPham">Thêm Mới Sản Phẩm</button>
+                            <button class="mt-1 btn btn-primary" id="createSanPham">Sửa Sản Phẩm</button>
                         </form>
                     </div>
                 </div>
@@ -216,13 +229,12 @@
                                         <th class="text-nowrap text-center">Mô tả chi tiết</th>
                                         <th class="text-nowrap text-center">Danh Mục</th>
                                         <th class="text-nowrap text-center">Tình Trạng</th>
-                                        <th class="text-nowrap text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "select * from san_phams";
-                                    $ket_qua = mysqli_query($ket_noi, $sql);
+                                    // $sql = "select * from san_phams";
+                                    // $ket_qua = mysqli_query($ket_noi, $sql);
                                     foreach ($ket_qua as $tung_san_pham) { ?>
                                         <tr>
                                             <td><?php echo $tung_san_pham['id'] ?></td>
@@ -244,7 +256,7 @@
                                             <td>
                                                 <?php echo $tung_san_pham['id_danh_muc']; ?>
                                             </td>
-                                            <td class="trang_thai">
+                                            <td class="trang_thai_edit">
                                                 <?php
                                                 echo "<button ";
                                                 if ($tung_san_pham['is_open'] == 1) {
@@ -254,10 +266,6 @@
                                                 }
                                                 echo " </button>";
                                                 ?>
-                                            </td>
-                                            <td class="test">
-                                                <a href="delete.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
-                                                <a href="./update_QLSP.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-primary edit mr-1 edit_DM">Edit</button></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

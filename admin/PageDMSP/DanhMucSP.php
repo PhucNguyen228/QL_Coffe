@@ -160,7 +160,7 @@
                                             <td>
                                                 <?php echo $tung_san_pham['id_danh_muc_cha']; ?>
                                             </td>
-                                            <td class="test">
+                                            <td class="trang_thai">
                                                 <?php
                                                 echo "<button ";
                                                 if ($tung_san_pham['is_open'] == 1) {

@@ -1,4 +1,5 @@
 <?php
+
 $ten_san_pham =  $_POST['ten_san_pham'];
 $slug_san_pham =  $_POST['slug_san_pham'];
 $gia_ban =  $_POST['gia_ban'];

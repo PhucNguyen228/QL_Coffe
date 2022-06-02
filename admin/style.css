@@ -391,4 +391,23 @@ a:hover {
     display: none;
 }
 
+td.test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+
+td.img {
+    display: flex;
+    justify-content: center;
+}
+
+.mo_ta {
+    word-break: break-word;
+}
+
+td.trang_thai_edit {
+    display: flex;
+    justify-content: center;
+}

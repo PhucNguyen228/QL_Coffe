@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../PageQLSP/QuanLySP.php">
                         <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
                         <span class="title">Quản lý sản phẩm</span>
                     </a>
@@ -102,45 +102,6 @@
                 </div>
             </div>
 
-            <!-- cart box -->
-            <div class="cartBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,235</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-                    <div class="iconBox">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,655</div>
-                        <div class="cardName">Sales</div>
-                    </div>
-                    <div class="iconBox">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">935</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-                    <div class="iconBox">
-                        <i class="fa fa-comment" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">$6,100</div>
-                        <div class="cardName">Earning</div>
-                    </div>
-                    <div class="iconBox">
-                        <i class="fa fa-usd" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-5">
                     <div class="main-card mb-3 card">
@@ -173,8 +134,14 @@
                                 <div class="position-relative form-group">
                                     <label>Tình Trạng</label>
                                     <select id="is_open" name="is_open" value="<?php echo $DanhMuc['is_open'] ?>" class="form-control">
-                                        <option value=1>Hiển Thị</option>
-                                        <option value=0>Tạm Tắt</option>
+                                        <?php if ($DanhMuc['is_open'] == 1) {
+                                            echo '<option value=1>Hiển Thị</option>';
+                                            echo '<option value=0>Tạm tắt</option>';
+                                        } else {
+                                            echo '<option value=0>Tạm tắt</option>';
+                                            echo '<option value=1>Hiển Thị</option>';
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 <button class="mt-1 btn btn-primary" id="themMoiDanhMuc">Cập Nhật Danh Mục</button>
@@ -193,7 +160,6 @@
                                         <th class="text-center">Tên Danh Mục</th>
                                         <th class="text-center">Danh Mục Cha</th>
                                         <th class="text-center">Tình Trạng</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -206,12 +172,16 @@
                                             <td>
                                                 <?php echo $tung_san_pham['id_danh_muc_cha']; ?>
                                             </td>
-                                            <td class="test">
-                                                <button data-id="1" class="doiTrangThai btn btn-primary" <?php echo $tung_san_pham['is_open']; ?>>Hiển thị</button>
-                                            </td>
-                                            <td class="test">
-                                                <a href="delete.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
-                                                <a href="./DanhMucSP.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-primary edit mr-1 edit_DM">Edit</button></a>
+                                            <td class="trang_thai_edit">
+                                                <?php
+                                                echo "<button ";
+                                                if ($tung_san_pham['is_open'] == 1) {
+                                                    echo 'class="doiTrangThai btn btn-primary">Hiển thị';
+                                                } else {
+                                                    echo 'class="doiTrangThai btn btn-danger">Tạm tắt';
+                                                }
+                                                echo " </button>";
+                                                ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
