@@ -11,7 +11,7 @@ mysqli_set_charset($ket_noi, 'utf8');
 $sql = "insert into bans(ma_ban, is_open) 
                     value('$ma_ban', '$is_open')";
 // die có nghĩa là echo để in ra câu chuỗi, và có tác dụng dừng ngay tại dòng khi đặt câu lệnh die
-die($sql);
+// die($sql);`
 
 mysqli_query($ket_noi, $sql);
 

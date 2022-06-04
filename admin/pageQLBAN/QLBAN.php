@@ -143,12 +143,6 @@
                                             <td>
                                                 <?php echo $so_bans['ma_ban']; ?>
                                             </td>
-                                            <td>
-                                                <?php echo $so_bans['gia_ban']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $so_bans['gia_khuyen_mai']; ?>
-                                            </td>
                                             <td class="trang_thai">
                                                 <?php
                                                 echo "<button ";
@@ -161,8 +155,7 @@
                                                 ?>
                                             </td>
                                             <td class="test">
-                                                <a href="delete.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
-                                                <a href="./update_QLSP.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-primary edit mr-1 edit_DM">Edit</button></a>
+                                                <a href="delete.php?id=<?php echo $so_bans['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

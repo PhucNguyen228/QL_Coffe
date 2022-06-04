@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pageQLBAN/QLBAN.php">
                         <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
                         <span class="title">Quản lý bàn</span>
                     </a>

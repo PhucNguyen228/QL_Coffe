@@ -411,3 +411,7 @@ td.trang_thai_edit {
     display: flex;
     justify-content: center;
 }
+
+.doiTrangThai {
+    margin-left: calc(100%/3.5);
+}
