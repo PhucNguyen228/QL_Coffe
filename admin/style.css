@@ -23,7 +23,7 @@ body {
 }
 
 .navigation.active {
-    width: 60px;   
+    width: 60px;
 }
 
 .navigation {
@@ -178,7 +178,7 @@ body {
 
 .user img {
     position: absolute;
-    width: 100px;    
+    width: 100px;
     left: 0;
     top: 0;
     width: 100%;
@@ -195,7 +195,7 @@ body {
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 }
 
@@ -288,12 +288,12 @@ body {
     padding: 9px 5px;
 }
 
-.details .recentOrders table thead tr td:last-child, 
+.details .recentOrders table thead tr td:last-child,
 .details .recentOrders table tbody tr td:last-child {
     text-align: right;
 }
 
-.details .recentOrders table thead tr td:nth-child(2), 
+.details .recentOrders table thead tr td:nth-child(2),
 .details .recentOrders table tbody tr td:nth-child(2) {
     text-align: right;
     padding-right: 20px;
@@ -307,7 +307,7 @@ body {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 300;
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
 }
 
 .delivered {
@@ -374,7 +374,7 @@ body {
 a,
 a:hover {
     text-decoration: none;
-    color: #fff;
+    /* color: #fff; */
 }
 
 .modal_edit.open {
@@ -387,7 +387,7 @@ a:hover {
     right: 0;
     left: 0;
     bottom: 0;
-    background:rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.4);
     display: none;
 }
 
@@ -396,7 +396,6 @@ td.test {
     justify-content: center;
     align-items: center;
 }
-
 
 td.img {
     display: flex;
@@ -412,6 +411,16 @@ td.trang_thai_edit {
     justify-content: center;
 }
 
-.doiTrangThai {
+.mg-center {
     margin-left: calc(100%/3.5);
+}
+
+.btnTNV {
+    margin-top: 10px;
+    margin-left: 12px;
+    margin-bottom: -13px;
+}
+
+.mg-20 {
+    margin-left: 20px;
 }

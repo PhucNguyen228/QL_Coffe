@@ -18,7 +18,7 @@
 <body>
     <?php
     include '../connect.php';
-    $sql = "select * from bans";
+    $sql = "select * from agents";
     $ket_qua = mysqli_query($ket_noi, $sql);
     ?>
     <div class="container">
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../PageQLNV/QuanLyNV.php">
+                    <a href="./QuanLyNV.php">
                         <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
                         <span class="title">Quản lý nhân viên</span>
                     </a>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./QLBAN.php">
+                    <a href="../pageQLBAN/QLBAN.php">
                         <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
                         <span class="title">Quản lý bàn</span>
                     </a>
@@ -97,68 +97,26 @@
             <div class="page-title-icon">
                 <i class="pe-7s-car icon-gradient bg-mean-fruit"></i>
             </div>
-            <div style="margin-left: 13px; margin-top: 10px; font-size: 20px;">
-                <b> Quản Lý Bàn </b>
-
-            </div>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-12">
+                    <a href="FormDKNV.php"><button type="button" class="btn btn-primary btnTNV">Thêm tài khoản cho nhân viên</button></a>
                     <div class="main-card mb-3 card">
-                        <div class="card-body">
-                            <h5 class="card-title">Thêm Mới Bàn</h5>
-                            <form autocomplete="off" method="post" action="process_insert.php" id="createBan">
-                                <div class="position-relative form-group">
-                                    <label>Mã Bàn</label>
-                                    <input id="ma_ban" name="ma_ban" placeholder="Nhập vào mã bàn" type="text" class="form-control">
-                                </div>
-                                <div class="position-relative form-group">
-                                    <label>Tình Trạng</label>
-                                    <select id="is_open" name="is_open" class="form-control">
-                                        <option value=1>Hiển Thị</option>
-                                        <option value=0>Tạm Tắt</option>
-                                    </select>
-                                </div>
-                                <button class="mt-1 btn btn-primary" id="themMoiBan">Thêm Mới Bàn</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="main-card mb-3 card">
-                        <div class="card-body">
-                            <h5 class="card-title">Table Bàn</h5>
-                            <table class="mb-0 table table-bordered" id="tableBan">
+                        <div class="card-body" style="text-align: center">
+                            <h5 class="card-title">Table Quản Lý Nhân Viên</h5>
+                            <table class="mb-0 table table-bordered" id="tableNhanVien">
                                 <thead>
                                     <tr>
                                         <th class="text-center">#</th>
-                                        <th class="text-center">Mã Bàn</th>
+                                        <th class="text-center">Họ Và Tên</th>
+                                        <th class="text-center">Số Điện Thoại</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Địa Chỉ</th>
                                         <th class="text-center">Tình Trạng</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($ket_qua as $so_bans) { ?>
-                                        <tr>
-                                            <td><?php echo $so_bans['id'] ?></td>
-                                            <td>
-                                                <?php echo $so_bans['ma_ban']; ?>
-                                            </td>
-                                            <td class="trang_thai">
-                                                <?php
-                                                echo "<button ";
-                                                if ($so_bans['is_open'] == 1) {
-                                                    echo 'class="doiTrangThai mg-center btn btn-primary">Hiển thị';
-                                                } else {
-                                                    echo 'class="doiTrangThai mg-center btn btn-danger">Tạm tắt';
-                                                }
-                                                echo " </button>";
-                                                ?>
-                                            </td>
-                                            <td class="test">
-                                                <a href="delete.php?id=<?php echo $so_bans['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -169,22 +127,23 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Xóa Bàn</h5>
+                            <h5 class="modal-title">Xóa Tài Khoản</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             Bạn có chắc chắn muốn xóa? Điều này không thể hoàn tác.
-                            <input type="text" class="form-control" placeholder="Nhập vào id cần xóa" id="idDeleteBan" hidden>
+                            <input type="text" class="form-control" placeholder="Nhập vào id cần xóa" id="idDeleteUser" hidden>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" id="accpectDelete" class="btn btn-danger" data-dismiss="modal">Xóa Bàn</button>
+                            <button type="button" id="accpectDelete" class="btn btn-danger" data-dismiss="modal">Xóa </button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <script src="../main.js"></script>
