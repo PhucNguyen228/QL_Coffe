@@ -15,10 +15,10 @@ mysqli_set_charset($ket_noi, 'utf8');
 $sql = "insert into agents(ho_va_ten, so_dien_thoai, email, password, dia_chi, thanh_pho) 
                     value('$ho_va_ten', '$so_dien_thoai', '$email', '$password', '$dia_chi', '$thanh_pho')";
 // die có nghĩa là echo để in ra câu chuỗi, và có tác dụng dừng ngay tại dòng khi đặt câu lệnh die
-echo($sql);
+// echo($sql);
 mysqli_query($ket_noi, $sql);
 
 
 // dùng cầu lệnh đống sql
 // mysqli_close($ket_noi);
-// header("Location: http://quan_ly_cafe.localhost/admin/PageQLNV/FormDKNV.php");
+header("Location: http://quan_ly_cafe.localhost/admin/PageQLNV/FormDKNV.php");

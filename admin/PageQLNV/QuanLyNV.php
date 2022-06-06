@@ -111,12 +111,51 @@
                                         <th class="text-center">Số Điện Thoại</th>
                                         <th class="text-center">Email</th>
                                         <th class="text-center">Địa Chỉ</th>
+                                        <th class="text-center">Password</th>
+                                        <th class="text-center">Thành Phố</th>
                                         <th class="text-center">Tình Trạng</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                <?php
+                                    foreach ($ket_qua as $nhanviens) { ?>
+                                        <tr>
+                                            <td><?php echo $nhanviens['id'] ?></td>
+                                            <td>
+                                                <?php echo $nhanviens['ho_va_ten']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $nhanviens['so_dien_thoai']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $nhanviens['email']; ?>
+                                            </td>
+                                            <td class="mo_ta">
+                                                <?php echo $nhanviens['password']; ?>
+                                            </td>
+                                            <td class="mo_ta">
+                                                <?php echo $nhanviens['dia_chi']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $nhanviens['thanh_pho']; ?>
+                                            </td>
+                                            <td class="trang_thai">
+                                                <?php
+                                                echo "<button ";
+                                                if ($nhanviens['is_open'] == 1) {
+                                                    echo 'class="doiTrangThai btn btn-primary">Hiển thị';
+                                                } else {
+                                                    echo 'class="doiTrangThai btn btn-danger">Tạm tắt';
+                                                }
+                                                echo " </button>";
+                                                ?>
+                                            </td>
+                                            <td class="test">
+                                                <a href="delete.php?id=<?php echo $nhanviens['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
