@@ -12,13 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/assets_admin/">
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <title>Quản lý bàn</title>
+    <title>Quản lý sản phẩm</title>
 </head>
 
 <body>
     <?php
     include '../connect.php';
-    $sql = "select * from agents";
+    $sql = "select * from danh_muc_san_phams";
     $ket_qua = mysqli_query($ket_noi, $sql);
     ?>
     <div class="container">
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./QuanLyNV.php">
+                    <a href="../PageQLNV/QuanLyNV.php">
                         <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
                         <span class="title">Quản lý nhân viên</span>
                     </a>
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../PageQLSP/QuanLySP.php">
+                    <a href="./QuanLySP.php">
                         <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
                         <span class="title">Quản lý sản phẩm</span>
                     </a>
@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../PageQLKHO/QLKHO.php">
+                    <a href="../PageQLKHO//QLKHO.php">
                         <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
                         <span class="title">Quản lý kho</span>
                     </a>
@@ -97,83 +97,100 @@
             <div class="page-title-icon">
                 <i class="pe-7s-car icon-gradient bg-mean-fruit"></i>
             </div>
+
+            <h3 style="margin: 13px 0px 0px 13px;">Quản Lý Nhập Kho</h3>
             <div class="row">
-                <div class="col-md-12">
-                    <a href="FormDKNV.php"><button type="button" class="btn btn-primary btnTNV">Thêm tài khoản cho nhân viên</button></a>
-                    <div class="main-card mb-3 card">
-                        <div class="card-body" style="text-align: center">
-                            <h5 class="card-title">Table Quản Lý Nhân Viên</h5>
-                            <table class="mb-0 table table-bordered" id="tableNhanVien">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">#</th>
-                                        <th class="text-center">Họ Và Tên</th>
-                                        <th class="text-center">Số Điện Thoại</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Địa Chỉ</th>
-                                        <th class="text-center">Password</th>
-                                        <th class="text-center">Thành Phố</th>
-                                        <th class="text-center">Tình Trạng</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                    foreach ($ket_qua as $nhanviens) { ?>
-                                        <tr>
-                                            <td><?php echo $nhanviens['id'] ?></td>
-                                            <td>
-                                                <?php echo $nhanviens['ho_va_ten']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $nhanviens['so_dien_thoai']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $nhanviens['email']; ?>
-                                            </td>
-                                            <td class="mo_ta">
-                                                <?php echo $nhanviens['password']; ?>
-                                            </td>
-                                            <td class="mo_ta">
-                                                <?php echo $nhanviens['dia_chi']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $nhanviens['thanh_pho']; ?>
-                                            </td>
-                                            <td class="trang_thai">
-                                                <?php
-                                                echo "<button ";
-                                                if ($nhanviens['is_open'] == 1) {
-                                                    echo 'class="doiTrangThai btn btn-primary">Hiển thị';
-                                                } else {
-                                                    echo 'class="doiTrangThai btn btn-danger">Tạm tắt';
-                                                }
-                                                echo " </button>";
-                                                ?>
-                                            </td>
-                                            <td class="test">
-                                                <a href="delete.php?id=<?php echo $nhanviens['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
-                                            </td>
+                <div class="col-md-4">
+                    <div class="card" style="height: auto">
+                        <div class="card-header">
+                            <h4 class="card-title" id="basic-layout-colored-form-control">Nhập Kho Danh Muc Sản Phẩm</h4>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse"><i class="feather icon-minus"></i></a></li>
+                                    <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>
+                                    <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
+                                    <li><a data-action="close"><i class="feather icon-x"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <fieldset class="form-group position-relative">
+                                    <input id="searchDanhMuc" type="text" class="form-control form-control mb-1" placeholder="Nhập vào tên danh mục">
+                                    <div class="form-control-position">
+                                        <i id="search" class="feather icon-search info font-medium-4"></i>
+                                    </div>
+                                </fieldset>
+                                <table class="table table-bordered mb-0 mt-1" id="tableBenTrai">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">Tên Danh Muc Sản Phẩm</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header" style="height: auto">
+                            <h4 class="card-title">Nhập Kho Sản Phẩm</h4>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse"><i class="feather icon-minus"></i></a></li>
+                                    <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>
+                                    <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
+                                    <li><a data-action="close"><i class="feather icon-x"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-header">
+                                <h5>Chi Tiết Hóa Đơn Nhập Hàng</h5>
+                                <span>Tổng tiền hàng: <span id="tongTien" class="text-danger font-weight-bold"></span></span>
+                                <span>Tổng số sản phẩm: <span id="tongSanPham" class="text-danger font-weight-bold"></span></span>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered mb-0" id="tableBenPhai">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">Tên Sản Phẩm</th>
+                                            <th class="text-center">Số Lượng</th>
+                                            <th class="text-center">Đơn Giá</th>
+                                            <th class="text-center">Thành Tiền</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <button id="creatNhapKho" class="m-1 btn btn-primary">Nhập Kho</button>
+                    </div>
+                </div>
             </div>
+
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Xóa Tài Khoản</h5>
+                            <h5 class="modal-title">Xóa </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             Bạn có chắc chắn muốn xóa? Điều này không thể hoàn tác.
-                            <input type="text" class="form-control" placeholder="Nhập vào id cần xóa" id="idDeleteUser" hidden>
+                            <input type="text" class="form-control" placeholder="Nhập vào id cần xóa" id="idDelete" hidden>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -182,7 +199,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <script src="../main.js"></script>

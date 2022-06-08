@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../PageQLKHO/QLKHO.php">
                         <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
                         <span class="title">Quản lý kho</span>
                     </a>

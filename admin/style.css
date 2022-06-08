@@ -424,3 +424,9 @@ td.trang_thai_edit {
 .mg-20 {
     margin-left: 20px;
 }
+
+.title h2 {
+    margin-top: 10px;
+    font-weight: 700;
+    margin-left: -11px;
+}
