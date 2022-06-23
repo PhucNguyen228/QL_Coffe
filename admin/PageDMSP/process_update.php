@@ -3,7 +3,6 @@ include '../connect.php';
 $id = $_POST['id'];
 $ten_danh_muc = $_POST['ten_danh_muc'];
 $slug_danh_muc = $_POST['slug_danh_muc'];
-$hinh_anh = $_POST['hinh_anh'];
 $id_danh_muc_cha = $_POST['id_danh_muc_cha'];
 $is_open = $_POST['is_open'];
 // echo $ma.$tieu_de.$noi_dung.$anh;

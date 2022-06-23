@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pageQLHD/QLHD.php">
                         <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
                         <span class="title">Quản lý hoá đơn</span>
                     </a>
@@ -68,18 +68,6 @@
                     <a href="../PageQLKHO/QLKHO.php">
                         <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
                         <span class="title">Quản lý kho</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                        <span class="title">Sign Out</span>
                     </a>
                 </li>
             </ul>
@@ -161,15 +149,6 @@
                                 </div>
                             </div>
 
-                            <div class="position-relative form-group">
-                                <label>Mô Tả Ngắn</label>
-                                <textarea class="form-control" id="mo_ta_ngan" name="mo_ta_ngan" cols="30" rows="5" placeholder="Nhập vào mô tả ngắn"></textarea>
-                            </div>
-                            <div class="position-relative form-group">
-                                <label>Mô Tả Chi Tiết</label>
-                                <input id="mo_ta_chi_tiet" name="mo_ta_chi_tiet" placeholder="Nhập vào mô tả chi tiết" type="text" class="form-control">
-                            </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
@@ -212,8 +191,6 @@
                                         <!-- <th class="text-nowrap text-center">Slug Sản Phẩm</th> -->
                                         <th class="text-nowrap text-center">Giá Bán</th>
                                         <th class="text-nowrap text-center">Giá Khuyến Mãi</th>
-                                        <th class="text-nowrap text-center">mô tả ngắn</th>
-                                        <th class="text-nowrap text-center">Mô tả chi tiết</th>
                                         <th class="text-nowrap text-center">Danh Mục</th>
                                         <th class="text-nowrap text-center">Tình Trạng</th>
                                         <th class="text-nowrap text-center">Action</th>
@@ -234,12 +211,6 @@
                                             </td>
                                             <td>
                                                 <?php echo $tung_san_pham['gia_khuyen_mai']; ?>
-                                            </td>
-                                            <td class="mo_ta">
-                                                <?php echo $tung_san_pham['mo_ta_ngan']; ?>
-                                            </td>
-                                            <td class="mo_ta">
-                                                <?php echo $tung_san_pham['mo_ta_chi_tiet']; ?>
                                             </td>
                                             <td>
                                                 <?php echo $tung_san_pham['id_danh_muc']; ?>
@@ -269,6 +240,7 @@
             </div>
         </div>
     </div>
+    <script src="../jquery-3.6.0.min.js"></script>
     <script src="../main.js"></script>
 </body>
 

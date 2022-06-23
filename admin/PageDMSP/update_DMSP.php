@@ -193,6 +193,7 @@
             </div>
         </div>
     </div>
+    <script src="../jquery-3.6.0.min.js"></script>
     <script src="../main.js"></script>
 </body>
 

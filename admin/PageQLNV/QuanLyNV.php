@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/assets_admin/">
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <title>Quản lý bàn</title>
+    <title>Quản lý nhân viên</title>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pageQLHD/QLHD.php">
                         <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
                         <span class="title">Quản lý hoá đơn</span>
                     </a>
@@ -70,18 +70,7 @@
                         <span class="title">Quản lý kho</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
+                
             </ul>
         </div>
         <div class="main">
@@ -110,8 +99,8 @@
                                         <th class="text-center">Họ Và Tên</th>
                                         <th class="text-center">Số Điện Thoại</th>
                                         <th class="text-center">Email</th>
-                                        <th class="text-center">Địa Chỉ</th>
                                         <th class="text-center">Password</th>
+                                        <th class="text-center">Địa Chỉ</th>
                                         <th class="text-center">Thành Phố</th>
                                         <th class="text-center">Tình Trạng</th>
                                         <th class="text-center">Action</th>
@@ -130,7 +119,7 @@
                                             </td>
                                             <td>
                                                 <?php echo $nhanviens['email']; ?>
-                                            </td>
+                                            </td type="password">
                                             <td class="mo_ta">
                                                 <?php echo $nhanviens['password']; ?>
                                             </td>

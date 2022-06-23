@@ -18,35 +18,11 @@
 <body>
     <?php
     include '../connect.php';
-    // $sql = "select * from danh_muc_san_phams";
-    // $ket_qua = mysqli_query($ket_noi, $sql);
-
-    $trang = 1;
-    if (isset($_GET['trang'])) {
-        $trang = $_GET['trang'];
-    }
-
-    $tim_kiem = '';
-    if (isset($_GET['tim_kiem'])) {
-        $tim_kiem = $_GET['tim_kiem'];
-    }
-
-    $sql_so_danh_muc = "select count(*) from danh_muc_san_phams where ten_danh_muc like '%$tim_kiem%'";
-    $mang_so_danh_muc = mysqli_query($ket_noi, $sql_so_danh_muc);
-    $ket_qua_so_danh_muc = mysqli_fetch_array($mang_so_danh_muc);
-    $so_danh_muc = $ket_qua_so_danh_muc['count(*)'];
-
-    $so_danh_muc_tren_1_trang = 5;
-
-    $so_trang = ceil($so_danh_muc / $so_danh_muc_tren_1_trang);
-    // bỏ qua n bài đầu 
-    $bo_qua = $so_danh_muc_tren_1_trang * ($trang - 1);
-    // die($so_trang);
-
-    $sql = "select * from danh_muc_san_phams where ten_danh_muc like '%$tim_kiem%' limit $so_danh_muc_tren_1_trang offset $bo_qua";
+    $id = $_GET['id'];
+    $sql = "select * from khos where id = '$id'";
     $ket_qua = mysqli_query($ket_noi, $sql);
+    $San_Pham_Nhap_khos = mysqli_fetch_array($ket_qua);
     ?>
-
     <div class="container">
 
         <!-- navigation left -->
@@ -85,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../pageQLHD/QLHD.php">
+                    <a href="#">
                         <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
                         <span class="title">Quản lý hoá đơn</span>
                     </a>
@@ -115,60 +91,7 @@
 
             <h3 style="margin: 13px 0px 0px 13px;">Quản Lý Nhập Kho</h3>
             <div class="row">
-                <div class="col-md-8">
-                    <div class="card" style="height: auto">
-                        <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-colored-form-control">Nhập Kho Danh Muc Sản Phẩm</h4>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="feather icon-minus"></i></a></li>
-                                    <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>
-                                    <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
-                                    <li><a data-action="close"><i class="feather icon-x"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-content collapse show">
-                            <div class="card-body">
-                                <fieldset class="form-group position-relative">
-                                    <caption>
-                                        <form>
-                                            <input id="searchDanhMuc" type="search" name="tim_kiem" value="<?php echo $tim_kiem ?>" class="form-control form-control mb-1" placeholder="Nhập vào tên danh mục">
-                                        </form>
-                                    </caption>
-                                    <div class="form-control-position">
-                                        <i id="search" class="feather icon-search info font-medium-4"></i>
-                                    </div>
-                                    <table class="table table-bordered mb-0 mt-1" id="tableBenTrai">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th class="text-center">#</th>
-                                                <th class="text-center">Tên Danh Muc Sản Phẩm</th>
-                                                <th class="text-center">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($ket_qua as $danh_muc_san_pham) { ?>
-                                                <tr>
-                                                    <td> <?php echo $danh_muc_san_pham['id'] ?></td>
-                                                    <td> <?php echo $danh_muc_san_pham['ten_danh_muc'] ?></td>
-                                                    <td class="test"><a href="process_insert.php?id=<?php echo $danh_muc_san_pham['id'] ?>"><button class="btn btn-info btn-sm add">Add</button></a></td>
-                                                </tr>
-                                            <?php } ?>
-                                            <tr>
-                                                <td colspan="3"><?php for ($i = 1; $i <= $so_trang; $i++) { ?>
-                                                        <a href="?trang=<?php echo $i ?>&& tim_kiem=<?php echo $tim_kiem ?>  ">
-                                                            <?php echo $i ?>
-                                                        </a>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" style="height: auto">
@@ -201,33 +124,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <?php
-                                        $sql = "select * from khos";
-                                        $ket_qua = mysqli_query($ket_noi, $sql);
-
-                                        foreach ($ket_qua as $tung_san_pham) { ?>
+                                        <form autocomplete="off" method="post" action="process_update.php" id="update_Khos">
+                                            <input type="hidden" name="id" value="<?php echo $id ?>">
                                             <tr>
-                                                <td><?php echo $tung_san_pham['id'] ?></td>
+                                                <td><?php echo $San_Pham_Nhap_khos['id'] ?></td>
                                                 <td>
-                                                    <?php echo $tung_san_pham['ten_danh_muc']; ?>
+                                                    <?php echo $San_Pham_Nhap_khos['ten_danh_muc']; ?>
                                                 </td>
                                                 <td>
-                                                    <input name="so_luong" value="<?php echo $tung_san_pham['so_luong']; ?>">
+                                                    <input name="so_luong" value="<?php echo $San_Pham_Nhap_khos['so_luong']; ?>">
                                                 </td>
                                                 <td>
-                                                    <input name="don_gia" value="<?php echo $tung_san_pham['don_gia']; ?>">
+                                                    <input name="don_gia" value="<?php echo $San_Pham_Nhap_khos['don_gia']; ?>">
                                                 </td>
                                                 <td>
-                                                    <input name="thanh_tien" value="<?php echo $tung_san_pham['thanh_tien']; ?>">
+                                                    <input name="thanh_tien" value="<?php echo $San_Pham_Nhap_khos['thanh_tien']; ?>">
                                                 </td>
                                                 <td class="test">
-                                                    <a href="./Form_update_khos.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-primary edit mr-1 edit_DM">Edit</button></a>
-                                                    <a href="delete.php?id=<?php echo $tung_san_pham['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
+                                                    <a href="delete.php?id=<?php echo $San_Pham_Nhap_khos['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
-
+                                            <button class="mt-1 btn btn-primary" id="update_capnhat">Cập nhật</button>
+                                        </form>
                                     </tbody>
                                 </table>
                             </div>

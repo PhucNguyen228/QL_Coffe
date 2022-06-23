@@ -18,8 +18,8 @@ include '../connect.php';
 // câu lệnh giúp mã hoá lại tiếng việt tốt hơn
 // echo '<a href="../PageDMSP/DanhMucSP.php">'.'về lại trang chủ'.'</a> </br>';
 mysqli_set_charset($ket_noi, 'utf8');
-$sql = "insert into san_phams(ten_san_pham, slug_san_pham, gia_ban, gia_khuyen_mai, anh_dai_dien, mo_ta_ngan, mo_ta_chi_tiet, id_danh_muc, is_open) 
-                        value('$ten_san_pham', '$slug_san_pham', '$gia_ban', '$gia_khuyen_mai', '$anh_dai_dien', '$mo_ta_ngan', '$mo_ta_chi_tiet', '$id_danh_muc', '$trag_thai')";
+$sql = "insert into san_phams(ten_san_pham, slug_san_pham, gia_ban, gia_khuyen_mai, anh_dai_dien, id_danh_muc, is_open) 
+                        value('$ten_san_pham', '$slug_san_pham', '$gia_ban', '$gia_khuyen_mai', '$anh_dai_dien', '$id_danh_muc', '$trag_thai')";
 // $trang_thai = "select * from danh_muc_san_phams where"
 // die có nghĩa là echo để in ra câu chuỗi, và có tác dụng dừng ngay tại dòng khi đặt câu lệnh die
 // die($sql);

@@ -18,7 +18,7 @@
 <body>
     <?php
     include '../connect.php';
-    $sql = "select * from bans";
+    $sql = "select * from danh_muc_san_phams";
     $ket_qua = mysqli_query($ket_noi, $sql);
     ?>
     <div class="container">
@@ -53,13 +53,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./QLBAN.php">
+                    <a href="../pageQLBAN/QLBAN.php">
                         <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
                         <span class="title">Quản lý bàn</span>
                     </a>
                 </li>
                 <li>
-                    <a href="../pageQLHD/QLHD.php">
+                    <a href="./QLHD.php">
                         <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
                         <span class="title">Quản lý hoá đơn</span>
                     </a>
@@ -75,9 +75,9 @@
         </div>
         <div class="main">
 
-            <!-- top bar -->
             <div class="topbar">
                 <div class="toggle" onclick="toggleMenu();"></div>
+
                 <div class="user">
                     <img src="../img/user.jpg">
                 </div>
@@ -86,67 +86,39 @@
             <div class="page-title-icon">
                 <i class="pe-7s-car icon-gradient bg-mean-fruit"></i>
             </div>
-            <div style="margin-left: 13px; margin-top: 10px; font-size: 20px;">
-                <b> Quản Lý Bàn </b>
-
-            </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="main-card mb-3 card">
-                        <div class="card-body">
-                            <h5 class="card-title">Thêm Mới Bàn</h5>
-                            <form autocomplete="off" method="post" action="process_insert.php" id="createBan">
-                                <div class="position-relative form-group">
-                                    <label>Mã Bàn</label>
-                                    <input id="ma_ban" name="ma_ban" placeholder="Nhập vào mã bàn" type="text" class="form-control">
-                                </div>
-                                <div class="position-relative form-group">
-                                    <label>Tình Trạng</label>
-                                    <select id="is_open" name="is_open" class="form-control">
-                                        <option value=1>Hiển Thị</option>
-                                        <option value=0>Tạm Tắt</option>
-                                    </select>
-                                </div>
-                                <button class="mt-1 btn btn-primary" id="themMoiBan">Thêm Mới Bàn</button>
-                            </form>
-                        </div>
-                    </div>
+            <div style="text-align: center">
+                <b> Quản Lý Hóa Đơn </b>
+                <div class="page-title-subheading">
+                    <b>Sửa hóa đơn và xem hóa đơn</b>
                 </div>
-                <div class="col-md-7">
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
-                            <h5 class="card-title">Table Bàn</h5>
-                            <table class="mb-0 table table-bordered" id="tableBan">
+                            <h5 class="card-title">Table Hóa Đơn Cafe</h5>
+                            <table class="mb-0 table table-bordered" id="tableHoaDon">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">#</th>
-                                        <th class="text-center">Mã Bàn</th>
-                                        <th class="text-center">Tình Trạng</th>
+                                        <th class="text-center">Bàn</th>
+                                        <th class="text-center">Tên Sản Phẩm</th>
+                                        <th class="text-center">Giá</th>
+                                        <th class="text-center">Số Lượng</th>
+                                        <th class="text-center">Tổng Cộng</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($ket_qua as $so_bans) { ?>
+                                    <?php foreach ($ket_qua as $danh_muc_san_pham) { ?>
                                         <tr>
-                                            <td><?php echo $so_bans['id'] ?></td>
-                                            <td>
-                                                <?php echo $so_bans['ma_ban']; ?>
-                                            </td>
-                                            <td class="trang_thai">
-                                                <?php
-                                                echo "<button ";
-                                                if ($so_bans['is_open'] == 1) {
-                                                    echo 'class="doiTrangThai mg-center btn btn-primary">Hiển thị';
-                                                } else {
-                                                    echo 'class="doiTrangThai mg-center btn btn-danger">Tạm tắt';
-                                                }
-                                                echo " </button>";
-                                                ?>
-                                            </td>
-                                            <td class="test">
-                                                <a href="./form_update_bans.php?id=<?php echo $so_bans['id'] ?>"><button class="btn btn-primary edit mr-1 edit_DM">Edit</button></a>
-                                                <a href="delete.php?id=<?php echo $so_bans['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
-                                            </td>
+                                            <td> <?php echo $danh_muc_san_pham['id'] ?></td>
+                                            <td> <?php echo $danh_muc_san_pham['ten_danh_muc'] ?></td>
+                                            <td><p>25.000đ</p></td>
+                                            <td><p>3</p></td>
+                                            <td><p>75.000</p></td>
+                                            <td><a href="delete.php?id=<?php echo $so_bans['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -155,22 +127,64 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Xóa Bàn</h5>
+                            <h5 class="modal-title">Xóa Hóa Đơn</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             Bạn có chắc chắn muốn xóa? Điều này không thể hoàn tác.
-                            <input type="text" class="form-control" placeholder="Nhập vào id cần xóa" id="idDeleteBan" hidden>
+                            <input type="text" class="form-control" placeholder="Nhập vào id cần xóa" id="idDeleteDanhMuc" hidden>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" id="accpectDelete" class="btn btn-danger" data-dismiss="modal">Xóa Bàn</button>
+                            <button type="button" id="accpectDelete" class="btn btn-danger" data-dismiss="modal">Xóa Danh Mục</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chỉnh Sửa Hóa Đơn</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" id="id_edit" hidden>
+                            <div class="position-relative form-group">
+                                <label>Tên Sản Phẩm</label>
+                                <input id="ten_san_pham_edit" placeholder="Nhập vào tên danh mục" type="text" class="form-control">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset class="form-group">
+                                        <label>Giá Bán</label>
+                                        <input type="number" class="form-control" id="gia_ban_edit" placeholder="Nhập vào giá bán">
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset class="form-group">
+                                        <label>Số Lượng</label>
+                                        <input type="number" class="form-control" id="so_luong_edit" placeholder="Nhập vào số lượng">
+                                    </fieldset>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="closeModalUpdate" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="accpectUpdate" class="btn btn-success">Cập Nhật Danh Mục</button>
                         </div>
                     </div>
                 </div>

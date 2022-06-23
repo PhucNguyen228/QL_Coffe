@@ -2,7 +2,6 @@
 
 $ma_ban = $_POST['ma_ban'];
 $is_open = $_POST['is_open'];
-
 include '../connect.php';
 // die($ket_noi);
 

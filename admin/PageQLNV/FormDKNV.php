@@ -130,12 +130,12 @@
                                             <input type="password" id="password" name="password" class="input_test form-control" />
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-row align-items-center mb-2">
+                                    <!-- <div class="d-flex flex-row align-items-center mb-2">
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label">Nhập Lại Mật Khẩu</label>
                                             <input type="password" id="re_password" name="re_password"class="input_test form-control" />
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="d-flex flex-row align-items-center mb-2">
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label">Địa Chỉ</label>

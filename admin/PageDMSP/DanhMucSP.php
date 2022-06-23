@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/assets_admin/">
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <title>Admin Dashboard</title>
+    <title>Quản lý danh mục</title>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pageQLHD/QLHD.php">
                         <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
                         <span class="title">Quản lý hoá đơn</span>
                     </a>
@@ -70,18 +70,7 @@
                         <span class="title">Quản lý kho</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
+                
             </ul>
         </div>
         <div class="main">
@@ -103,20 +92,12 @@
                             <h5 class="card-title">Thêm Mới Danh Mục Sản Phẩm</h5>
                             <form autocomplete="off" id="createDanhMuc" method="post" action="process_insert.php">
                                 <div class="position-relative form-group">
-                                    <label>Tên Danh Mục</label>
+                                    <label for="ten_danh_muc">Tên Danh Mục</label>
                                     <input id="ten_danh_muc" name="ten_danh_muc" placeholder="Nhập vào tên danh mục" type="text" class="form-control">
                                 </div>
                                 <div class="position-relative form-group">
-                                    <label>Slug Danh Mục</label>
+                                    <label for="slug_danh_muc">Slug Danh Mục</label>
                                     <input id="slug_danh_muc" name="slug_danh_muc" placeholder="Nhập vào slug danh mục" type="text" class="form-control">
-                                </div>
-                                <div class="position-relative form-group">
-                                    <label>Hình Ảnh</label>
-                                    <div class="input-group">
-                                        <input id="hinh_anh" name="hinh_anh" class="form-control" type="text">
-                                        <input type="button" class="btn-info lfm" data-input="hinh_anh" data-preview="holder" value="Upload">
-                                    </div>
-                                    <img id="holder" style="margin-top:15px;max-height:100px;">
                                 </div>
                                 <div class="position-relative form-group">
                                     <label>Danh Mục Cha</label>
@@ -235,6 +216,7 @@
         </div>
     </div> -->
 
+    <script src="../jquery-3.6.0.min.js"></script>
     <script src="../main.js"></script>
 </body>
 

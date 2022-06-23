@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="./pageQLHD/QLHD.php">
                         <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
                         <span class="title">Quản lý hoá đơn</span>
                     </a>
@@ -64,18 +64,7 @@
                         <span class="title">Quản lý kho</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
+                
             </ul>
         </div>
         <div class="main">
@@ -246,6 +235,7 @@
             </div>
         </div>
     </div>
+    <script src="jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
 </body>
 

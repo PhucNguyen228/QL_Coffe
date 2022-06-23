@@ -2,8 +2,8 @@
 $ho_va_ten = $_POST['ho_va_ten'];
 $so_dien_thoai = $_POST['so_dien_thoai'];
 $email = $_POST['email'];
-$password = $_POST['password'];
-$re_password = $_POST['re_password'];
+$pw = $_POST['password'];
+$password = password_hash($pw, PASSWORD_BCRYPT);
 $dia_chi = $_POST['dia_chi'];
 $thanh_pho = 'Đà Nẵng';
 

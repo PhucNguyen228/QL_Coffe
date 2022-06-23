@@ -18,8 +18,10 @@
 <body>
     <?php
     include '../connect.php';
-    $sql = "select * from bans";
+    $id = $_GET['id'];
+    $sql = "select * from bans where id = '$id'";
     $ket_qua = mysqli_query($ket_noi, $sql);
+    $so_bans = mysqli_fetch_array($ket_qua);
     ?>
     <div class="container">
 
@@ -59,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../pageQLHD/QLHD.php">
+                    <a href="#">
                         <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
                         <span class="title">Quản lý hoá đơn</span>
                     </a>
@@ -95,19 +97,26 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title">Thêm Mới Bàn</h5>
-                            <form autocomplete="off" method="post" action="process_insert.php" id="createBan">
+                            <form autocomplete="off" method="post" action="process_update.php" id="createBan">
+                                <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <div class="position-relative form-group">
                                     <label>Mã Bàn</label>
-                                    <input id="ma_ban" name="ma_ban" placeholder="Nhập vào mã bàn" type="text" class="form-control">
+                                    <input id="ma_ban" name="ma_ban" placeholder="Nhập vào mã bàn" type="text" class="form-control" value="<?php echo $so_bans['ma_ban'] ?>">
                                 </div>
                                 <div class="position-relative form-group">
                                     <label>Tình Trạng</label>
-                                    <select id="is_open" name="is_open" class="form-control">
-                                        <option value=1>Hiển Thị</option>
-                                        <option value=0>Tạm Tắt</option>
+                                    <select id="is_open" name="is_open" value="<?php echo $DanhMuc['is_open'] ?>" class="form-control">
+                                        <?php if ($so_bans['is_open'] == 1) {
+                                            echo '<option value=1>Hiển Thị</option>';
+                                            echo '<option value=0>Tạm tắt</option>';
+                                        } else {
+                                            echo '<option value=0>Tạm tắt</option>';
+                                            echo '<option value=1>Hiển Thị</option>';
+                                        }
+                                        ?>
                                     </select>
                                 </div>
-                                <button class="mt-1 btn btn-primary" id="themMoiBan">Thêm Mới Bàn</button>
+                                <button class="mt-1 btn btn-primary" id="themMoiBan">Cập nhật Bàn</button>
                             </form>
                         </div>
                     </div>
@@ -126,7 +135,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($ket_qua as $so_bans) { ?>
+                                    <form autocomplete="off" method="post" action="process_update.php" id="update_Khos">
+                                        <input type="hidden" name="id" value="<?php echo $id ?>">
                                         <tr>
                                             <td><?php echo $so_bans['id'] ?></td>
                                             <td>
@@ -144,11 +154,9 @@
                                                 ?>
                                             </td>
                                             <td class="test">
-                                                <a href="./form_update_bans.php?id=<?php echo $so_bans['id'] ?>"><button class="btn btn-primary edit mr-1 edit_DM">Edit</button></a>
                                                 <a href="delete.php?id=<?php echo $so_bans['id'] ?>"><button class="btn btn-danger delete mr-1" data-iddelete="'+ value.id +'" data-toggle="modal" datatarget="#deleteModal">Xoá</button></a>
                                             </td>
-                                        </tr>
-                                    <?php } ?>
+                                    </form>
                                 </tbody>
                             </table>
                         </div>
